@@ -1,3 +1,5 @@
+// C++ Solution
+
 class Solution {
 public:
     bool detectCapitalUse(string word) {
@@ -21,3 +23,26 @@ public:
         }
     }
 };
+
+
+// GO Solution
+
+func detectCapitalUse(word string) bool {
+    cnt := 0
+    isCap := false
+    
+    for i := 0;i < len(word);i++ {
+        if word[i] >= 'A' && word[i] <= 'Z' {
+            cnt++;
+            if i == 0 {
+                isCap = true
+            }
+        }
+    }
+    
+    if (cnt == len(word)) || (isCap && cnt == 1) || (cnt == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

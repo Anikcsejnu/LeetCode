@@ -72,3 +72,49 @@ public:
         return false;
     }
 };
+
+// Solved using DSU
+
+class Solution {
+public:
+    struct UnionFind {
+        vector<int> parent;
+        
+        UnionFind(int n) : parent(n) {
+            for(int i = 0;i < n;i++) {
+                parent[i] = i;
+            }
+        }
+        
+        int root(int v) {
+            if(v == parent[v])
+                return v;
+            return parent[v] = root(parent[v]);
+        }
+        
+        void merge(int u, int v) {
+            int ru = root(u);
+            int rv = root(v);
+            
+            if(ru == rv)
+                return;
+            parent[ru] = rv;
+        }
+        
+        bool same(int u, int v) {
+            return root(u) == root(v);
+        }
+        
+    };
+    
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        UnionFind DSU(n);
+        
+        for(int i = 0;i < edges.size();i++) {
+            DSU.merge(edges[i][0], edges[i][1]);
+        }
+        
+        return DSU.same(source, destination);
+        
+    }
+};

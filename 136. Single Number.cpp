@@ -21,3 +21,19 @@ public:
         return ans;
     }
 };
+
+// Time: O(N) Linear
+// Space: O(1) Constant
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans = 0;
+        
+        for(int i = 0;i < nums.size();i++) {
+            ans ^= nums[i];
+        }
+        
+        return ans;
+    }
+};

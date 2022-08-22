@@ -1,18 +1,19 @@
 class Solution {
 public:
     int findMin(vector<int>& nums) {
-        int lo = 0, hi = nums.size()-1;
-        while (lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            cout << mid << ' ' << lo << ' ' << hi << endl;
-            cout << nums[mid] << ' ' << nums[lo] << ' ' << nums[hi] << endl;
-            
-            if (nums[mid] < nums[hi]) {
-                hi = mid;
-            } else {
-                lo = mid+1;
+        int start = 0, end = nums.size() - 1, mid = 0;
+        
+        while(start < end) {
+            mid = (start + end) / 2;
+                       
+            if(nums[mid] < nums[end]) {
+                end = mid;
+            }
+            else {
+                start = mid + 1;
             }
         }
-        return nums[lo];
+        
+        return nums[start];
     }
 };

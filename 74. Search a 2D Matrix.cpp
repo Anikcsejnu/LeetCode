@@ -1,3 +1,5 @@
+// Binary Search approach
+
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -25,6 +27,25 @@ public:
             }
         }
         
+        return false;
+        
+    }
+};\
+
+
+// Linear search approach
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+        int size = (row * col);
+        
+        for(int i = 0;i < size;i++) {
+            if (target == matrix[i/col][i%col]) 
+                return true;
+        }
         return false;
         
     }

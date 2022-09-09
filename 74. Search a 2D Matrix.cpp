@@ -67,3 +67,25 @@ func searchMatrix(matrix [][]int, target int) bool {
     return false
     
 }
+
+// GO binary Search
+
+func searchMatrix(matrix [][]int, target int) bool {
+    row := len(matrix)
+    col := len(matrix[0])
+    end := (row * col) - 1
+    start, mid := 0, 0 
+    
+    for start <= end {
+        mid = (start + end) / 2
+        
+        if matrix[mid/col][mid%col] < target {
+            start = mid + 1
+        } else if matrix[mid/col][mid%col] > target {
+            end = mid - 1
+        } else {
+          return true
+        }
+    }
+    return false
+}

@@ -50,3 +50,20 @@ public:
         
     }
 };
+
+// Linear approach with GO
+
+func searchMatrix(matrix [][]int, target int) bool {
+    row := len(matrix)
+    col := len(matrix[0])
+    size := row * col
+    
+    for i := 0;i < size;i++ {
+        if(matrix[i/col][i%col] == target) {
+            return true;
+        }
+    }
+    
+    return false
+    
+}

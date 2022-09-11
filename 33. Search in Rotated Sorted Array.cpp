@@ -30,3 +30,56 @@ public:
         return -1;
     }
 };
+
+
+// Optimal solution 
+
+class Solution {
+private:
+    int getPivot(vector<int>& nums) {
+        int start = 0;
+        int end = nums.size() - 1;
+        
+        while(start < end) {
+            int mid = start + (end - start) / 2;
+            
+            if(nums[0] <= nums[mid])
+                start = mid + 1;
+            else
+                end = mid;
+        }
+        
+        return start;
+    }
+    
+    int binarySearch(vector<int>& nums, int low, int high, int target) {
+        int start = low;
+        int end = high;
+        
+        while(start <= end) {
+            int mid = start + (end - start) / 2;
+            
+            if(target > nums[mid])
+                start = mid + 1;
+            else if(target < nums[mid])
+                end = mid - 1;
+            else
+                return mid;
+        }
+        
+        return -1;
+    }
+    
+public:
+    int search(vector<int>& nums, int target) {
+        int n = nums.size();
+        int pivot = getPivot(nums);
+        
+         if(target >= nums[pivot] && target <= nums[n-1]) {
+            return binarySearch(nums, pivot, n-1, target);
+        }
+        else {
+            return binarySearch(nums, 0, pivot-1, target);
+        }
+    }
+};

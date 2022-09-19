@@ -29,3 +29,26 @@ public:
         return min(cost[n-1], cost[n-2]);
     }
 };
+
+// Recusion
+
+class Solution {
+int dp[1000] = {0};
+public:
+    int recur(vector<int>& cost, int n) {
+        if (n == 0 || n == 1) 
+            return cost[n];
+        if (dp[n] != 0) 
+            return dp[n];
+        
+        dp[n] = cost[n] + min(recur(cost, n - 1), recur(cost, n - 2));
+        
+        return dp[n];
+    }
+    
+    
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
+        return min(recur(cost, n - 1), recur(cost, n - 2));
+    }
+};

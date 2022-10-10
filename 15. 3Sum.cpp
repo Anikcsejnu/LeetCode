@@ -3,32 +3,35 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> ans;
         int len = nums.size();
-        
         sort(nums.begin(), nums.end());
         
-        for(int i = 0;i < len;i++) {
+        for(int i = 0;i < len - 2;i++) {
             if(i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
             
-            int left = i + 1, right = len - 1;
+            int first = i;
+            int sum = 0;
             
-            while(left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
+            int second = i+1;
+            int third = len - 1;
+            
+            while(second < third) {                
+                sum = nums[first] + nums[second] + nums[third];
                 
-                if(sum > 0) {
-                    right--;
+                if(sum == 0){
+                    ans.push_back({nums[first], nums[second], nums[third]}); 
+                    second++;
+                    
+                    while(second < third && nums[second] == nums[second-1]) {
+                        second++;
+                    }
                 }
-                else if(sum < 0) {
-                    left++;
+                else if(sum > 0) {
+                    third--;
                 }
                 else {
-                    ans.push_back({nums[i], nums[left], nums[right]});
-                    left++;
-                    
-                    while(nums[left] == nums[left - 1] && left < right) {
-                        left++;
-                    }
+                    second++;
                 }
             }
         }

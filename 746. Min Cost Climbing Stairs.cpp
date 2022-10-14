@@ -52,3 +52,29 @@ public:
         return min(recur(cost, n - 1), recur(cost, n - 2));
     }
 };
+
+// Solve again
+
+
+class Solution {
+int dp[1000] = {0};
+public:
+    int recur(vector<int>& cost, int n) {
+        if (n == cost.size() - 1 || n == cost.size() - 2) {
+            return cost[n];
+        }
+        
+        if(dp[n] != 0) return dp[n];
+        
+        dp[n] = min(recur(cost, n + 1), recur(cost, n + 2)) + cost[n]; 
+        
+        return dp[n];
+    }
+    
+    
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = -1;
+        
+        return min(recur(cost, n + 1), recur(cost, n + 2));
+    }
+};

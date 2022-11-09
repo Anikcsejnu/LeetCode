@@ -87,17 +87,18 @@ public:
 // Updated the approach
 
 class Solution {
-private:
-    int getPivot(vector<int>& nums) {
-        int start = 0, end = nums.size() - 1;
+public:
+    int getPivot(vector<int> nums) {
+        int len = nums.size();
+        int start = 0, end = len - 1;
         
         while(start < end) {
             int mid = start + (end - start) / 2;
             
-            if(nums[0] <= nums[mid]) {
+            if(nums[mid] >= nums[0]) {
                 start = mid + 1;
             }
-            else {
+            else{
                 end = mid;
             }
         }
@@ -105,7 +106,6 @@ private:
     }
     
     int binarySearch(vector<int>& nums, int start, int end, int target) {
-        
         while(start <= end) {
             int mid = start + (end - start) / 2;
             
@@ -123,10 +123,9 @@ private:
         return -1;
     }
     
-public:
     int search(vector<int>& nums, int target) {
-        int len = nums.size();
         int pivot = getPivot(nums);
+        int len = nums.size();
         
         if((nums[pivot] <= target) && (target <= nums[len-1])) {
             return binarySearch(nums, pivot, len - 1, target);
@@ -134,6 +133,5 @@ public:
         else {
             return binarySearch(nums, 0, pivot - 1, target);
         }
-        
     }
 };

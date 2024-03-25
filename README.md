@@ -1,1 +1,1 @@
-# LeetCode
+This repository contains my solutions to various LeetCode problems implemented in C++. LeetCode is a platform for practicing coding interviews, and the problems cover a wide range of topics including algorithms, data structures, and problem-solving techniques.
